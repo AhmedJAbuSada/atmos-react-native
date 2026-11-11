@@ -1,0 +1,104 @@
+{
+  "about": {
+    "dataSource": "Weather data by Open-Meteo.com",
+    "license": "License: MIT",
+    "sourceCode": "Source code on GitHub",
+    "title": "About",
+    "version": "Version {{version}}"
+  },
+  "action": {
+    "back": "Back",
+    "clearSearch": "Clear search",
+    "retry": "Try again"
+  },
+  "cities": {
+    "add": "Add {{name}}",
+    "alreadySaved": "{{name}} is already in your list",
+    "emptySaved": "Search for a city to add it here.",
+    "noResults": "No cities found",
+    "remove": "Remove {{name}}",
+    "removed": "{{name}} removed",
+    "searchPrompt": "Search city",
+    "title": "Cities",
+    "undo": "Undo"
+  },
+  "condition": {
+    "clear": "Clear",
+    "drizzle": "Drizzle",
+    "fog": "Fog",
+    "freezingDrizzle": "Freezing drizzle",
+    "freezingRain": "Freezing rain",
+    "mainlyClear": "Mainly clear",
+    "overcast": "Overcast",
+    "partlyCloudy": "Partly cloudy",
+    "rain": "Rain",
+    "rainShowers": "Rain showers",
+    "snow": "Snow",
+    "snowShowers": "Snow showers",
+    "thunderstorm": "Thunderstorm",
+    "thunderstormWithHail": "Thunderstorm with hail",
+    "unknown": "Unknown conditions"
+  },
+  "error": {
+    "locationDenied": "Location access is off.",
+    "locationUnavailable": "We couldn't find your location. Try again outdoors or search for a city.",
+    "noConnection": "You're offline. Check your connection and try again.",
+    "notFound": "We couldn't find that place.",
+    "server": "The weather service has a problem right now. Please try again later.",
+    "timeout": "The weather service is taking too long to answer.",
+    "unknown": "Something went wrong. Please try again."
+  },
+  "home": {
+    "allowLocation": "Allow location",
+    "attribution": "Weather data by Open-Meteo.com",
+    "currentLocation": "Current location",
+    "feelsLike": "Feels like {{value}}",
+    "humidity": "Humidity {{value}}",
+    "loading": "Loading the forecast",
+    "lowHigh": "Low {{low}}, high {{high}}",
+    "next24Hours": "Next 24 hours",
+    "next7Days": "Next 7 days",
+    "noLocation": {
+      "message": "Allow location access to see the weather where you are, or search for a city.",
+      "title": "Where are you?"
+    },
+    "now": "Now",
+    "openCities": "Cities",
+    "openSettings": "Settings",
+    "precipitationChance": "{{value}} chance of precipitation",
+    "searchCity": "Search for a city",
+    "sunriseSunset": "Sunrise {{sunrise}} · Sunset {{sunset}}",
+    "today": "Today",
+    "updatedDays_one": "Updated {{count}} day ago",
+    "updatedDays_other": "Updated {{count}} days ago",
+    "updatedHours_one": "Updated {{count}} hour ago",
+    "updatedHours_other": "Updated {{count}} hours ago",
+    "updatedMinutes_one": "Updated {{count}} minute ago",
+    "updatedMinutes_other": "Updated {{count}} minutes ago",
+    "wind": "Wind {{value}}"
+  },
+  "settings": {
+    "about": "About",
+    "language": {
+      "footer": "The app language follows your phone's settings.",
+      "open": "Change language",
+      "title": "Language"
+    },
+    "temperature": "Temperature",
+    "theme": {
+      "dark": "Dark",
+      "light": "Light",
+      "system": "System",
+      "title": "Theme"
+    },
+    "title": "Settings",
+    "unit": {
+      "celsius": "°C",
+      "fahrenheit": "°F",
+      "kilometersPerHour": "km/h",
+      "metersPerSecond": "m/s",
+      "milesPerHour": "mph"
+    },
+    "windSpeed": "Wind speed"
+  }
+}
