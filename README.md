@@ -5,12 +5,39 @@ public tutorial on professional React Native development with Clean Architecture
 coding agent.**
 
 <!-- step-banner:start -->
-> ### 📍 You are on `main`: the newest version
-> This branch has every step merged so far (see [PROGRESS.md](docs/PROGRESS.md)); at
-> step 07 it becomes the finished app. To **learn how it is built**, start at
-> [**Step 01 — Planning: documents before code**](https://github.com/AhmedJAbuSada/atmos-react-native/tree/step-01-planning) and follow the steps in order:
-> each step branch has its own README that explains what that step is, why it exists,
-> and what changed. All steps: [ROADMAP.md](docs/ROADMAP.md).
+## 📍 You are on Step 04 of 7 — Data layer: the app's backend on the phone
+
+`step-04-data-layer` · [← Step 03](https://github.com/AhmedJAbuSada/atmos-react-native/tree/step-03-domain-layer) · [Step 05 →](https://github.com/AhmedJAbuSada/atmos-react-native/tree/step-05-presentation-ui) · [All steps](docs/ROADMAP.md)
+
+**What this step is.** The app's backend on the phone: `fetch` behind a one-method `HttpClient` with a 15-second timeout, cancellation and a retry decorator, DTOs and mappers that read the API's local times in the place's time zone with `Intl` only, a forecast cache, saved cities and settings in AsyncStorage behind a `KeyValueStore` interface, and a location repository that checks the permission but never asks for it. 65 tests replay the real recorded responses; no test touches the network.
+
+**Why it matters.** Everything outside the app's control (the network, the disk, the GPS) is wrapped here, and every failure becomes a `DomainError` value in one table. The rest of the app receives domain interfaces from `createDataModule()` and cannot even name a DTO, so the API can change without touching a screen.
+
+**What you will find in this branch**
+
+| Where | What |
+|---|---|
+| `src/data/remote/` | HttpClient, retry, Open-Meteo API, error mapping |
+| `src/data/mappers/localTime.ts` | Local API times to instants, daylight saving included |
+| `src/data/repositories/` | Cache, saved cities, settings |
+| `src/data/location/` | Permission check + position, behind an interface |
+| `src/data/dataModule.ts` | The only way in: returns domain interfaces |
+| `__tests__/data/` | 65 tests on the recorded samples |
+
+**How to study this step**
+
+1. **Read the full guide:** [docs/steps/04-data-layer.md](docs/steps/04-data-layer.md): key ideas, diagrams, and *how the AI agent helped* (including what went wrong).
+2. **See exactly what this step changed:** [compare with step 03](https://github.com/AhmedJAbuSada/atmos-react-native/compare/step-03-domain-layer...step-04-data-layer).
+3. **Run it:**
+   ```bash
+   npm test -- __tests__/data --coverage
+   ```
+4. **Try the exercise:** Make `withRetry` also retry HTTP 429 (too many requests) after the `Retry-After` header. Write the test first with `replayingClient`.
+
+> This README shows the project *as it was at this step*. The finished app is on
+> [`main`](https://github.com/AhmedJAbuSada/atmos-react-native).
+
+---
 <!-- step-banner:end -->
 
 ![React Native](https://img.shields.io/badge/React%20Native-0.88-61DAFB?logo=react&logoColor=black)
