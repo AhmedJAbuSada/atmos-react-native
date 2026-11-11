@@ -1,0 +1,4 @@
+# Dependencies and builds (the full React Native ignore list arrives with the project in step 02)
+node_modules/
+coverage/
+.DS_Store
