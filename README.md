@@ -4,6 +4,37 @@
 public tutorial on professional React Native development with Clean Architecture and an AI
 coding agent.**
 
+<!-- step-banner:start -->
+## 📍 You are on Step 01 of 7 — Planning: documents before code
+
+`step-01-planning` · [Step 02 →](https://github.com/AhmedJAbuSada/atmos-react-native/tree/step-02-project-structure) · [All steps](docs/ROADMAP.md)
+
+**What this step is.** There is **no code** in this branch, on purpose. This is the third codebase for the same product, so the requirements, user stories, wireframes and API contract are **shared** with the native Android and iOS apps (same IDs), while the architecture, nine ADRs, TypeScript standards and `AGENTS.md` are written **for React Native**, each choice compared with the native apps.
+
+**Why it matters.** It shows how a team adds a cross-platform app to a product that already exists natively: the architecture stays the same and only the tools change (ESLint boundaries instead of Gradle modules or Swift packages, Zustand stores instead of ViewModels, a Result union instead of AppResult or typed throws).
+
+**What you will find in this branch**
+
+| Where | What |
+|---|---|
+| `docs/product/, docs/design/, docs/api/` | Shared with Android and iOS: the same product |
+| `docs/architecture/ARCHITECTURE.md` | Three layers as folders, enforced by ESLint |
+| `docs/architecture/adr/` | Nine decisions, each compared with the native apps |
+| `docs/process/CODING_STANDARDS.md` | TypeScript strict, ESLint, React Native rules |
+| `AGENTS.md, docs/AI_WORKFLOW.md` | How to work with an AI coding agent |
+
+**How to study this step**
+
+1. **Read the full guide:** [docs/steps/01-planning.md](docs/steps/01-planning.md): key ideas, diagrams, and *how the AI agent helped* (including what went wrong).
+2. **Read in this order:** PRD → user stories → API contract → architecture → ADRs → AGENTS.md.
+3. **Try the exercise:** Pick one ADR and read its counterpart in the Android and iOS repos. Which differences come from the platform, and which from the language?
+
+> This README shows the project *as it was at this step*. The finished app is on
+> [`main`](https://github.com/AhmedJAbuSada/atmos-react-native).
+
+---
+<!-- step-banner:end -->
+
 ![React Native](https://img.shields.io/badge/React%20Native-0.88-61DAFB?logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)
 ![Clean Architecture](https://img.shields.io/badge/Clean%20Architecture-3%20layers-success)
