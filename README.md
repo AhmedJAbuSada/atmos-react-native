@@ -5,12 +5,40 @@ public tutorial on professional React Native development with Clean Architecture
 coding agent.**
 
 <!-- step-banner:start -->
-> ### 📍 You are on `main`: the newest version
-> This branch has every step merged so far (see [PROGRESS.md](docs/PROGRESS.md)); at
-> step 07 it becomes the finished app. To **learn how it is built**, start at
-> [**Step 01 — Planning: documents before code**](https://github.com/AhmedJAbuSada/atmos-react-native/tree/step-01-planning) and follow the steps in order:
-> each step branch has its own README that explains what that step is, why it exists,
-> and what changed. All steps: [ROADMAP.md](docs/ROADMAP.md).
+## 📍 You are on Step 05 of 7 — Presentation: the views, before any data
+
+`step-05-presentation-ui` · [← Step 04](https://github.com/AhmedJAbuSada/atmos-react-native/tree/step-04-data-layer) · [Step 06 →](https://github.com/AhmedJAbuSada/atmos-react-native/tree/step-06-integration) · [All steps](docs/ROADMAP.md)
+
+**What this step is.** Every screen (Home, Cities, Settings, About) as a props-only view: a `state` value in, callbacks out, no store and no navigation. Strings in English, Turkish and Arabic with typed i18next keys and Arabic's six plural forms; numbers, units and times through `Intl` with Latin digits for Arabic and directional isolates around every value; light and dark design tokens with a contrast test; and a new ESLint rule that forbids `left`/`right` styles so the layout mirrors in Arabic. 58 tests render every state in all three languages.
+
+**Why it matters.** A view that can only show what it is given can be built, reviewed and tested before any data exists, in every language and theme. Localization is designed in, not added later: the OS owns the language (ADR-0011), Turkish writes `%69` and `07:46`, and Arabic reads right to left without turning `11°` into `°11`.
+
+**What you will find in this branch**
+
+| Where | What |
+|---|---|
+| `src/presentation/home/` | HomeState union + HomeView |
+| `src/presentation/i18n/` | en/tr/ar resources, typed keys, OS language |
+| `src/presentation/formatting/` | Intl formatter with directional isolates |
+| `src/presentation/theme/` | Light/dark tokens, resolveTheme |
+| `.eslintrc.js` | The new right-to-left rule |
+| `__tests__/presentation/` | 58 tests in en, tr and ar |
+
+**How to study this step**
+
+1. **Read the full guide:** [docs/steps/05-presentation-ui.md](docs/steps/05-presentation-ui.md): key ideas, diagrams, and *how the AI agent helped* (including what went wrong).
+2. **See exactly what this step changed:** [compare with step 04](https://github.com/AhmedJAbuSada/atmos-react-native/compare/step-04-data-layer...step-05-presentation-ui).
+3. **Run it:**
+   ```bash
+   npm test -- __tests__/presentation
+   npm run android
+   ```
+4. **Try the exercise:** Add a "Windy" badge to Home when the wind is above 40 km/h. Add the string in all three languages, then write a test that renders it in Arabic.
+
+> This README shows the project *as it was at this step*. The finished app is on
+> [`main`](https://github.com/AhmedJAbuSada/atmos-react-native).
+
+---
 <!-- step-banner:end -->
 
 ![React Native](https://img.shields.io/badge/React%20Native-0.88-61DAFB?logo=react&logoColor=black)
