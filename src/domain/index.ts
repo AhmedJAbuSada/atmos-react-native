@@ -1,9 +1,19 @@
 /**
- * # src/domain
+ * # src/domain — the business core
  *
- * The business core: entities, repository interfaces and use cases (step 03).
- *
- * **Rule:** plain TypeScript only. No React, no React Native, no native package, ever. That
- * keeps the rules testable in plain Node, in milliseconds (ADR-0001).
+ * Plain TypeScript only: no React, no React Native, no native package (ADR-0001). Other
+ * layers import from here, never the other way round.
  */
-export const DOMAIN_LAYER = 'domain';
+export * from './common/dateProvider';
+export * from './common/domainError';
+export * from './common/result';
+export * from './common/valueStore';
+export * from './location/city';
+export * from './location/cityUseCases';
+export * from './location/coordinates';
+export * from './location/repositories';
+export * from './settings/units';
+export * from './settings/userSettings';
+export * from './weather/forecast';
+export * from './weather/getForecast';
+export * from './weather/weatherCondition';
