@@ -1,6 +1,6 @@
 # Step 02 — Project structure: make the architecture a rule (React Native)
 
-**Branch:** `step-02-project-structure` · **Previous:** [step 01](01-planning.md) · **Next:** step 03, domain layer
+**Branch:** `step-02-project-structure` · **Previous:** [step 01](01-planning.md) · **Next:** [step 03, domain layer](03-domain-layer.md)
 
 The bare React Native project, with the three layers in place and **tools that enforce them**
 before any feature exists.
