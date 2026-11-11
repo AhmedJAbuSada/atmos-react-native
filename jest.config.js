@@ -1,5 +1,6 @@
 module.exports = {
     preset: '@react-native/jest-preset',
+    setupFiles: ['<rootDir>/jest.setup.js'],
     // Shared helpers for tests, not tests themselves.
     testPathIgnorePatterns: ['/node_modules/', '<rootDir>/__tests__/support/'],
     collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/testing/**'],
