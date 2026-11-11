@@ -5,12 +5,40 @@ public tutorial on professional React Native development with Clean Architecture
 coding agent.**
 
 <!-- step-banner:start -->
-> ### 📍 You are on `main`: the newest version
-> This branch has every step merged so far (see [PROGRESS.md](docs/PROGRESS.md)); at
-> step 07 it becomes the finished app. To **learn how it is built**, start at
-> [**Step 01 — Planning: documents before code**](https://github.com/AhmedJAbuSada/atmos-react-native/tree/step-01-planning) and follow the steps in order:
-> each step branch has its own README that explains what that step is, why it exists,
-> and what changed. All steps: [ROADMAP.md](docs/ROADMAP.md).
+## 📍 You are on Step 02 of 7 — Project structure: the architecture as a compile-time rule
+
+`step-02-project-structure` · [← Step 01](https://github.com/AhmedJAbuSada/atmos-react-native/tree/step-01-planning) · [Step 03 →](https://github.com/AhmedJAbuSada/atmos-react-native/tree/step-03-domain-layer) · [All steps](docs/ROADMAP.md)
+
+**What this step is.** The bare React Native 0.88 project (TypeScript, New Architecture) with the native `android/` and `ios/` folders in the open, the code moved into four layer folders (`src/domain`, `src/data`, `src/presentation`, `src/app`), strict TypeScript, ESLint rules that enforce the dependency direction and the Turkish casing rule, Jest, and CI that runs the checks, an Android build and an iOS build.
+
+**Why it matters.** TypeScript lets any file import any other, so the architecture is enforced by ESLint (`eslint-plugin-boundaries`) and fails CI like a compile error. React Native is a package, not a layer, so a second rule keeps it out of the domain: know what each tool guarantees, and cover the gaps.
+
+**What you will find in this branch**
+
+| Where | What |
+|---|---|
+| `.eslintrc.js` | The dependency rule + the casing rule |
+| `src/domain, src/data, src/presentation, src/app` | The four folders |
+| `src/app/composition.ts` | The composition root |
+| `tsconfig.json` | strict + noUncheckedIndexedAccess |
+| `.github/workflows/ci.yml` | Checks, Android build, iOS build |
+
+**How to study this step**
+
+1. **Read the full guide:** [docs/steps/02-project-structure.md](docs/steps/02-project-structure.md): key ideas, diagrams, and *how the AI agent helped* (including what went wrong).
+2. **See exactly what this step changed:** [compare with step 01](https://github.com/AhmedJAbuSada/atmos-react-native/compare/step-01-planning...step-02-project-structure).
+3. **Run it:**
+   ```bash
+   npm install
+   npm run typecheck && npm run lint && npm test
+   npm run android
+   ```
+4. **Try the exercise:** Add `import {Platform} from 'react-native'` to a file in `src/domain` and run `npm run lint`. Then call `'abc'.toUpperCase()` anywhere in `src`.
+
+> This README shows the project *as it was at this step*. The finished app is on
+> [`main`](https://github.com/AhmedJAbuSada/atmos-react-native).
+
+---
 <!-- step-banner:end -->
 
 ![React Native](https://img.shields.io/badge/React%20Native-0.88-61DAFB?logo=react&logoColor=black)
