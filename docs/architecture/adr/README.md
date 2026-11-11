@@ -14,5 +14,6 @@ edited; a new ADR supersedes an old one.
 | [0007](0007-asyncstorage.md) | Storage: AsyncStorage | Accepted |
 | [0008](0008-react-navigation.md) | Navigation: React Navigation native stack, typed routes | Accepted |
 | [0009](0009-testing-jest-and-maestro.md) | Testing: Jest, React Native Testing Library, Maestro | Accepted |
+| [0010](0010-location-libraries.md) | Location: community Geolocation and react-native-permissions | Accepted |
 
 Template: [`template.md`](template.md).
