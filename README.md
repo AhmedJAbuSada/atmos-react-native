@@ -4,6 +4,15 @@
 public tutorial on professional React Native development with Clean Architecture and an AI
 coding agent.**
 
+<!-- step-banner:start -->
+> ### 📍 You are on `main`: the newest version
+> This branch has every step merged so far (see [PROGRESS.md](docs/PROGRESS.md)); at
+> step 07 it becomes the finished app. To **learn how it is built**, start at
+> [**Step 01 — Planning: documents before code**](https://github.com/AhmedJAbuSada/atmos-react-native/tree/step-01-planning) and follow the steps in order:
+> each step branch has its own README that explains what that step is, why it exists,
+> and what changed. All steps: [ROADMAP.md](docs/ROADMAP.md).
+<!-- step-banner:end -->
+
 ![React Native](https://img.shields.io/badge/React%20Native-0.88-61DAFB?logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)
 ![Clean Architecture](https://img.shields.io/badge/Clean%20Architecture-3%20layers-success)
