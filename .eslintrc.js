@@ -72,6 +72,18 @@ module.exports = {
                 message:
                     'Pass a locale: toLocaleUpperCase(locale) / toLocaleLowerCase(locale). See ADR-0005.',
             },
+            // A style that says "left" stays on the left in Arabic. "start" follows the reading
+            // direction (NF-02, AGENTS.md).
+            {
+                selector:
+                    'Property[key.name=/^(left|right|(margin|padding)(Left|Right)|border(Left|Right)(Width|Color)|border(Top|Bottom)(Left|Right)Radius)$/]',
+                message:
+                    'Use start/end (marginStart, paddingEnd, start, ...) so the layout mirrors in right-to-left languages.',
+            },
+            {
+                selector: "Property[key.name='textAlign'][value.value=/^(left|right)$/]",
+                message: "Use textAlign 'auto' so text follows the reading direction.",
+            },
         ],
     },
     overrides: [

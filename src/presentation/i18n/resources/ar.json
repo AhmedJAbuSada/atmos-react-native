@@ -1,0 +1,116 @@
+{
+  "about": {
+    "dataSource": "بيانات الطقس من Open-Meteo.com",
+    "license": "الترخيص: MIT",
+    "sourceCode": "الشيفرة المصدرية على GitHub",
+    "title": "حول التطبيق",
+    "version": "الإصدار {{version}}"
+  },
+  "action": {
+    "back": "رجوع",
+    "clearSearch": "مسح البحث",
+    "retry": "إعادة المحاولة"
+  },
+  "cities": {
+    "add": "إضافة {{name}}",
+    "alreadySaved": "{{name}} موجودة في قائمتك بالفعل",
+    "emptySaved": "ابحث عن مدينة لإضافتها هنا.",
+    "noResults": "لم يتم العثور على مدن",
+    "remove": "إزالة {{name}}",
+    "removed": "تمت إزالة {{name}}",
+    "searchPrompt": "ابحث عن مدينة",
+    "title": "المدن",
+    "undo": "تراجع"
+  },
+  "condition": {
+    "clear": "صافٍ",
+    "drizzle": "رذاذ",
+    "fog": "ضباب",
+    "freezingDrizzle": "رذاذ متجمد",
+    "freezingRain": "مطر متجمد",
+    "mainlyClear": "صافٍ غالبًا",
+    "overcast": "غائم",
+    "partlyCloudy": "غائم جزئيًا",
+    "rain": "مطر",
+    "rainShowers": "زخات مطر",
+    "snow": "ثلج",
+    "snowShowers": "زخات ثلج",
+    "thunderstorm": "عاصفة رعدية",
+    "thunderstormWithHail": "عاصفة رعدية مع بَرَد",
+    "unknown": "حالة غير معروفة"
+  },
+  "error": {
+    "locationDenied": "الوصول إلى الموقع متوقف.",
+    "locationUnavailable": "لم نتمكن من تحديد موقعك. حاول مرة أخرى في مكان مفتوح أو ابحث عن مدينة.",
+    "noConnection": "أنت غير متصل بالإنترنت. تحقق من اتصالك وحاول مرة أخرى.",
+    "notFound": "لم نتمكن من العثور على هذا المكان.",
+    "server": "هناك مشكلة في خدمة الطقس حاليًا. يرجى المحاولة لاحقًا.",
+    "timeout": "خدمة الطقس تستغرق وقتًا طويلًا للرد.",
+    "unknown": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
+  },
+  "home": {
+    "allowLocation": "السماح بالموقع",
+    "attribution": "بيانات الطقس من Open-Meteo.com",
+    "currentLocation": "الموقع الحالي",
+    "feelsLike": "الإحساس {{value}}",
+    "humidity": "الرطوبة {{value}}",
+    "loading": "جارٍ تحميل التوقعات",
+    "lowHigh": "الصغرى {{low}}، العظمى {{high}}",
+    "next24Hours": "الساعات الـ 24 القادمة",
+    "next7Days": "الأيام السبعة القادمة",
+    "noLocation": {
+      "message": "اسمح بالوصول إلى الموقع لترى الطقس حيث أنت، أو ابحث عن مدينة.",
+      "title": "أين أنت؟"
+    },
+    "now": "الآن",
+    "openCities": "المدن",
+    "openSettings": "الإعدادات",
+    "precipitationChance": "احتمال الهطول {{value}}",
+    "searchCity": "البحث عن مدينة",
+    "sunriseSunset": "الشروق {{sunrise}} · الغروب {{sunset}}",
+    "today": "اليوم",
+    "updatedDays_few": "تم التحديث قبل {{count}} أيام",
+    "updatedDays_many": "تم التحديث قبل {{count}} يومًا",
+    "updatedDays_one": "تم التحديث قبل يوم",
+    "updatedDays_other": "تم التحديث قبل {{count}} يوم",
+    "updatedDays_two": "تم التحديث قبل يومين",
+    "updatedDays_zero": "تم التحديث اليوم",
+    "updatedHours_few": "تم التحديث قبل {{count}} ساعات",
+    "updatedHours_many": "تم التحديث قبل {{count}} ساعة",
+    "updatedHours_one": "تم التحديث قبل ساعة",
+    "updatedHours_other": "تم التحديث قبل {{count}} ساعة",
+    "updatedHours_two": "تم التحديث قبل ساعتين",
+    "updatedHours_zero": "تم التحديث الآن",
+    "updatedMinutes_few": "تم التحديث قبل {{count}} دقائق",
+    "updatedMinutes_many": "تم التحديث قبل {{count}} دقيقة",
+    "updatedMinutes_one": "تم التحديث قبل دقيقة",
+    "updatedMinutes_other": "تم التحديث قبل {{count}} دقيقة",
+    "updatedMinutes_two": "تم التحديث قبل دقيقتين",
+    "updatedMinutes_zero": "تم التحديث الآن",
+    "wind": "الرياح {{value}}"
+  },
+  "settings": {
+    "about": "حول التطبيق",
+    "language": {
+      "footer": "لغة التطبيق تتبع إعدادات هاتفك.",
+      "open": "تغيير اللغة",
+      "title": "اللغة"
+    },
+    "temperature": "درجة الحرارة",
+    "theme": {
+      "dark": "داكن",
+      "light": "فاتح",
+      "system": "حسب النظام",
+      "title": "المظهر"
+    },
+    "title": "الإعدادات",
+    "unit": {
+      "celsius": "°C",
+      "fahrenheit": "°F",
+      "kilometersPerHour": "km/h",
+      "metersPerSecond": "m/s",
+      "milesPerHour": "mph"
+    },
+    "windSpeed": "سرعة الرياح"
+  }
+}

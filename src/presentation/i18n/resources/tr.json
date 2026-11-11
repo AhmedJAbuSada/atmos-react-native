@@ -1,0 +1,104 @@
+{
+  "about": {
+    "dataSource": "Hava durumu verileri: Open-Meteo.com",
+    "license": "Lisans: MIT",
+    "sourceCode": "GitHub'da kaynak kodu",
+    "title": "Hakkında",
+    "version": "Sürüm {{version}}"
+  },
+  "action": {
+    "back": "Geri",
+    "clearSearch": "Aramayı temizle",
+    "retry": "Tekrar dene"
+  },
+  "cities": {
+    "add": "{{name}} ekle",
+    "alreadySaved": "{{name}} zaten listenizde",
+    "emptySaved": "Buraya eklemek için bir şehir arayın.",
+    "noResults": "Şehir bulunamadı",
+    "remove": "{{name}} kaldır",
+    "removed": "{{name}} kaldırıldı",
+    "searchPrompt": "Şehir ara",
+    "title": "Şehirler",
+    "undo": "Geri al"
+  },
+  "condition": {
+    "clear": "Açık",
+    "drizzle": "Çisenti",
+    "fog": "Sisli",
+    "freezingDrizzle": "Donan çisenti",
+    "freezingRain": "Donan yağmur",
+    "mainlyClear": "Çoğunlukla açık",
+    "overcast": "Kapalı",
+    "partlyCloudy": "Parçalı bulutlu",
+    "rain": "Yağmurlu",
+    "rainShowers": "Sağanak yağış",
+    "snow": "Karlı",
+    "snowShowers": "Kar sağanağı",
+    "thunderstorm": "Gök gürültülü fırtına",
+    "thunderstormWithHail": "Dolulu gök gürültülü fırtına",
+    "unknown": "Bilinmeyen durum"
+  },
+  "error": {
+    "locationDenied": "Konum erişimi kapalı.",
+    "locationUnavailable": "Konumunuzu bulamadık. Açık havada tekrar deneyin veya bir şehir arayın.",
+    "noConnection": "Çevrimdışısınız. Bağlantınızı kontrol edip tekrar deneyin.",
+    "notFound": "Bu yeri bulamadık.",
+    "server": "Hava durumu servisinde şu anda bir sorun var. Lütfen daha sonra tekrar deneyin.",
+    "timeout": "Hava durumu servisi çok geç yanıt veriyor.",
+    "unknown": "Bir şeyler ters gitti. Lütfen tekrar deneyin."
+  },
+  "home": {
+    "allowLocation": "Konuma izin ver",
+    "attribution": "Hava durumu verileri: Open-Meteo.com",
+    "currentLocation": "Mevcut konum",
+    "feelsLike": "Hissedilen {{value}}",
+    "humidity": "Nem {{value}}",
+    "loading": "Hava durumu yükleniyor",
+    "lowHigh": "En düşük {{low}}, en yüksek {{high}}",
+    "next24Hours": "Önümüzdeki 24 saat",
+    "next7Days": "Önümüzdeki 7 gün",
+    "noLocation": {
+      "message": "Bulunduğunuz yerin hava durumunu görmek için konum erişimine izin verin veya bir şehir arayın.",
+      "title": "Neredesiniz?"
+    },
+    "now": "Şimdi",
+    "openCities": "Şehirler",
+    "openSettings": "Ayarlar",
+    "precipitationChance": "Yağış olasılığı {{value}}",
+    "searchCity": "Şehir ara",
+    "sunriseSunset": "Gün doğumu {{sunrise}} · Gün batımı {{sunset}}",
+    "today": "Bugün",
+    "updatedDays_one": "{{count}} gün önce güncellendi",
+    "updatedDays_other": "{{count}} gün önce güncellendi",
+    "updatedHours_one": "{{count}} saat önce güncellendi",
+    "updatedHours_other": "{{count}} saat önce güncellendi",
+    "updatedMinutes_one": "{{count}} dakika önce güncellendi",
+    "updatedMinutes_other": "{{count}} dakika önce güncellendi",
+    "wind": "Rüzgâr {{value}}"
+  },
+  "settings": {
+    "about": "Hakkında",
+    "language": {
+      "footer": "Uygulama dili telefonunuzun ayarlarını izler.",
+      "open": "Dili değiştir",
+      "title": "Dil"
+    },
+    "temperature": "Sıcaklık",
+    "theme": {
+      "dark": "Koyu",
+      "light": "Açık",
+      "system": "Sistem",
+      "title": "Tema"
+    },
+    "title": "Ayarlar",
+    "unit": {
+      "celsius": "°C",
+      "fahrenheit": "°F",
+      "kilometersPerHour": "km/h",
+      "metersPerSecond": "m/s",
+      "milesPerHour": "mph"
+    },
+    "windSpeed": "Rüzgâr hızı"
+  }
+}
