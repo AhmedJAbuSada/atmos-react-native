@@ -1,0 +1,21 @@
+/**
+ * # src/presentation
+ *
+ * What the user sees: props-only views, the theme, formatting and translations. Views take a
+ * `state` value and callbacks; the view models that produce the state arrive in step 06.
+ */
+export { AppProviders } from './AppProviders';
+export { pickLanguage, isRightToLeft, type AppLanguage } from './i18n/language';
+export { resolveTheme, lightTheme, darkTheme, type Theme } from './theme/theme';
+export { HomeView } from './home/HomeView';
+export type { HomeState, HomeContent, HomeActions } from './home/homeState';
+export { CitiesView } from './cities/CitiesView';
+export type {
+    CitiesState,
+    CitiesActions,
+    PlaceItem,
+    SearchState,
+    CitiesNotice,
+} from './cities/citiesState';
+export { SettingsView, type SettingsActions } from './settings/SettingsView';
+export { AboutView, type AboutActions } from './settings/AboutView';
