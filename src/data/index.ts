@@ -1,4 +1,4 @@
-import { DOMAIN_LAYER } from '../domain';
+import type { Result } from '../domain';
 
 /**
  * # src/data
@@ -8,5 +8,5 @@ import { DOMAIN_LAYER } from '../domain';
  */
 export const DATA_LAYER = 'data';
 
-/** Proves the allowed direction: data may use the domain. */
-export const DATA_DEPENDS_ON = DOMAIN_LAYER;
+/** Proves the allowed direction: data may use domain types. */
+export type DataResult<T> = Result<T>;
