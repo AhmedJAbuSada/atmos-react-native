@@ -1,0 +1,79 @@
+# Three jobs:
+# - checks: TypeScript, ESLint (architecture + casing rules) and Jest. Fast; most changes
+#   are proven here.
+# - android: the debug APK builds.
+# - ios: the app builds for the iOS Simulator (CocoaPods + xcodebuild).
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main, "step-*"]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: Typecheck, lint and tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Lint (architecture, casing, React rules)
+        run: npm run lint
+      - name: Tests
+        run: npx jest --ci --coverage
+
+  android:
+    name: Android build
+    needs: checks
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          cache: npm
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: gradle/actions/setup-gradle@v5
+      - run: npm ci
+      - name: Assemble debug APK
+        working-directory: android
+        run: ./gradlew assembleDebug --console=plain > ../android.log 2>&1 || { python3 ../scripts/annotate-log.py ../android.log "Android build"; exit 1; }
+
+  ios:
+    name: iOS build
+    needs: checks
+    runs-on: macos-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Install CocoaPods dependencies
+        working-directory: ios
+        run: pod install > ../pods.log 2>&1 || { python3 ../scripts/annotate-log.py ../pods.log "pod install"; exit 1; }
+      - name: Build for the iOS Simulator
+        run: |
+          xcodebuild build -workspace ios/Atmos.xcworkspace -scheme Atmos -configuration Debug \
+            -sdk iphonesimulator -destination "generic/platform=iOS Simulator" CODE_SIGNING_ALLOWED=NO \
+            > ios.log 2>&1 || { python3 scripts/annotate-log.py ios.log "iOS build"; exit 1; }
