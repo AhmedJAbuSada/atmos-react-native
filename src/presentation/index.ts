@@ -2,7 +2,8 @@
  * # src/presentation
  *
  * What the user sees: props-only views, the theme, formatting and translations. Views take a
- * `state` value and callbacks; the view models that produce the state arrive in step 06.
+ * `state` value and callbacks; view models (Zustand stores) produce the state, and containers
+ * (`HomeScreen`, …) connect one to the other.
  */
 export { AppProviders } from './AppProviders';
 export { pickLanguage, isRightToLeft, type AppLanguage } from './i18n/language';
@@ -19,3 +20,7 @@ export type {
 } from './cities/citiesState';
 export { SettingsView, type SettingsActions } from './settings/SettingsView';
 export { AboutView, type AboutActions } from './settings/AboutView';
+export { HomeScreen } from './home/HomeScreen';
+export { CitiesScreen } from './cities/CitiesScreen';
+export { SettingsScreen } from './settings/SettingsScreen';
+export * from './viewModels';
