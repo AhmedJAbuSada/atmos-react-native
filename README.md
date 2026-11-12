@@ -5,12 +5,40 @@ public tutorial on professional React Native development with Clean Architecture
 coding agent.**
 
 <!-- step-banner:start -->
-> ### 📍 You are on `main`: the newest version
-> This branch has every step merged so far (see [PROGRESS.md](docs/PROGRESS.md)); at
-> step 07 it becomes the finished app. To **learn how it is built**, start at
-> [**Step 01 — Planning: documents before code**](https://github.com/AhmedJAbuSada/atmos-react-native/tree/step-01-planning) and follow the steps in order:
-> each step branch has its own README that explains what that step is, why it exists,
-> and what changed. All steps: [ROADMAP.md](docs/ROADMAP.md).
+## 📍 You are on Step 07 of 7 — Quality & release: prove it works the way users get it
+
+`step-07-quality-release` · [← Step 06](https://github.com/AhmedJAbuSada/atmos-react-native/tree/step-06-integration) · [All steps](docs/ROADMAP.md)
+
+**What this step is.** Proof that the built app works, and everything needed to ship it: the R8-shrunk release APK runs the main journey (search, add and open a city, change the unit) on an Android emulator against the real API, in English, Turkish and Arabic, with Maestro and testIDs; CI records 15 screenshots that were reviewed by eye; the iOS app builds in Release with its permission text translated and a correct privacy manifest; version 1.0.0, a changelog and a release checklist.
+
+**Why it matters.** Hundreds of fast tests in Node cannot prove the native build, R8, the real network, the OS language setting or right-to-left on a real screen. One slow journey can. A failing device test describes the screen in the CI annotation, so every failure is understood in one run.
+
+**What you will find in this branch**
+
+| Where | What |
+|---|---|
+| `e2e/journey.yaml` | The Maestro journey, by testID |
+| `scripts/device-tests.sh` | Runs it in en, tr and ar |
+| `.github/workflows/ci.yml` | Release APK → emulator → screenshots |
+| `docs/screenshots/` | Recorded by CI |
+| `docs/process/RELEASE_CHECKLIST.md` | How to ship, without keys in the repo |
+
+**How to study this step**
+
+1. **Read the full guide:** [docs/steps/07-quality-release.md](docs/steps/07-quality-release.md): key ideas, diagrams, and *how the AI agent helped* (including what went wrong).
+2. **See exactly what this step changed:** [compare with step 06](https://github.com/AhmedJAbuSada/atmos-react-native/compare/step-06-integration...step-07-quality-release).
+3. **Run it:**
+   ```bash
+   npm test
+   cd android && ./gradlew assembleRelease && cd ..
+   ./scripts/device-tests.sh   # with an emulator running and Maestro installed
+   ```
+4. **Try the exercise:** Add a second Maestro flow for removing a city with Undo. Which testIDs does it need, and do they all exist?
+
+> This README shows the project *as it was at this step*. The finished app is on
+> [`main`](https://github.com/AhmedJAbuSada/atmos-react-native).
+
+---
 <!-- step-banner:end -->
 
 ![React Native](https://img.shields.io/badge/React%20Native-0.88-61DAFB?logo=react&logoColor=black)
