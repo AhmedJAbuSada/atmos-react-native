@@ -9,6 +9,12 @@ export PATH="$HOME/.maestro/bin:$PATH"
 
 adb install -r "$APK"
 
+# CI emulators are slow right after boot, and the launcher (not our app) often shows
+# "isn't responding". Hide that dialog for background apps and let the system settle.
+adb shell settings put global anr_show_background 0
+adb shell input keyevent KEYCODE_HOME
+sleep 20
+
 # The emulator reports a position only when it is told one. A real phone keeps updating, so
 # keep sending Istanbul (longitude first) every 2 seconds while the journeys run.
 ( while true; do adb emu geo fix 28.97 41.01 >/dev/null 2>&1; sleep 2; done ) &

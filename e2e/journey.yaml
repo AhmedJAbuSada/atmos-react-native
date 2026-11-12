@@ -6,6 +6,14 @@ appId: dev.ahmedabusada.atmos.rn
 - launchApp:
     permissions:
       location: allow
+# If the emulator still shows a system "isn't responding" dialog, wait for that app.
+- runFlow:
+    when:
+      visible:
+        id: android:id/aerr_wait
+    commands:
+      - tapOn:
+          id: android:id/aerr_wait
 # The forecast for the current location (the emulator is placed in Istanbul).
 - extendedWaitUntil:
     visible:
