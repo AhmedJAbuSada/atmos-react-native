@@ -19,7 +19,7 @@ coding agent.**
 ![Languages](https://img.shields.io/badge/i18n-EN%20%7C%20TR%20%7C%20AR%20(RTL)-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-> 🚧 **In progress:** steps 01–05 of 7 are done. Follow along in [PROGRESS.md](docs/PROGRESS.md).
+> 🚧 **In progress:** steps 01–06 of 7 are done. Follow along in [PROGRESS.md](docs/PROGRESS.md).
 
 ## The same app on four platforms
 
@@ -39,7 +39,7 @@ coding agent.**
 | 03 | [`step-03-domain-layer`](../../tree/step-03-domain-layer) | Entities, use cases, `Result` errors |
 | 04 | [`step-04-data-layer`](../../tree/step-04-data-layer) | fetch + DTOs, mappers, AsyncStorage, location |
 | 05 | [`step-05-presentation-ui`](../../tree/step-05-presentation-ui) | Screens as props-only views, theme, i18next, RTL |
-| 06 | `step-06-integration` | Zustand view models, navigation, permissions |
+| 06 | [`step-06-integration`](../../tree/step-06-integration) | Zustand view models, navigation, permissions |
 | 07 | `step-07-quality-release` | Maestro end-to-end, screenshots, release |
 
 Full details: [ROADMAP.md](docs/ROADMAP.md).

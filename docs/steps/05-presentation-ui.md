@@ -1,6 +1,6 @@
 # Step 05 — Presentation: the views, before any data (React Native)
 
-**Branch:** `step-05-presentation-ui` · **Previous:** [step 04](04-data-layer.md) · **Next:** step 06, integration
+**Branch:** `step-05-presentation-ui` · **Previous:** [step 04](04-data-layer.md) · **Next:** [step 06, integration](06-integration.md)
 
 Every screen is built as a **view of a state value**: props in, callbacks out. No store, no
 repository, no navigation. A view that can only show what it is given can be built, tested and

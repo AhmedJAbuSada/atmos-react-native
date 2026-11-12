@@ -2,8 +2,8 @@
 
 > Read this first at the start of every work session (human or AI). Update it at the end.
 
-**Current step:** 05, presentation / UI ✅ done
-**Next up:** step 06, integration (`step-06-integration`)
+**Current step:** 06, integration ✅ done
+**Next up:** step 07, quality and release (`step-07-quality-release`)
 **Last updated:** 2026-11-11
 
 ## Status
@@ -15,29 +15,28 @@
 | 03 Domain layer | ✅ Done | `step-03-domain-layer` |
 | 04 Data layer | ✅ Done | `step-04-data-layer` |
 | 05 Presentation / UI | ✅ Done | `step-05-presentation-ui` |
-| 06 Integration | ⏳ Next | `step-06-integration` |
-| 07 Quality & release | ⬜ | — |
+| 06 Integration | ✅ Done | `step-06-integration` |
+| 07 Quality & release | ⏳ Next | `step-07-quality-release` |
 
-## Next up: step 06 plan
-Connect the views from step 05 to the use cases from step 03 and the data layer from step 04.
-Libraries are already decided: Zustand (ADR-0003) and React Navigation native stack (ADR-0008).
-1. View models as Zustand **vanilla** stores, one per screen, created by factories with their use
-   cases (`createHomeViewModel({getForecast, ...})`), tested as plain objects with the fakes in
-   `src/testing`. Each exposes one state value (the `HomeState`, `CitiesState`, … from step 05).
-2. Home: load from the selected place (current location first), cache-first through
-   `makeGetForecast`, pull to refresh, outdated banner from `refreshError`; cancellation is never
-   shown (ADR-0006).
-3. Location permission flow: the explanation screen first (`needsLocation`), then
-   `react-native-permissions` `request()`; denied → city search (F-02). The data layer only
-   checks (step 04).
-4. Cities: debounced search (300 ms, min 2 characters, older requests aborted), save,
-   remove with Undo, last known temperature per place from the cache.
-5. Settings: observe and update through `SettingsRepository`; the theme setting drives
-   `resolveTheme`; the language button calls `openAppLanguageSettings()`; About opens links.
-6. `src/app`: a React Context with the dependencies (ADR-0004), `RootStackParamList` with Home,
-   Cities, Settings, About, and containers that connect each store to its view.
-7. Tests: every view model (success, failure, cancellation), plus one journey test that renders
-   the app with fakes and goes Home → Cities → add a city → Home.
+## Next up: step 07 plan
+Make it releasable, with the same bar as the native apps. Maestro is already decided (ADR-0009).
+1. **End to end on an emulator:** a Maestro flow in CI on an Android emulator (search a city,
+   add it, open it, change the unit), run in en, tr and ar. Stable `testID`s already exist
+   (`cities.search`, `cities.add.<id>`, `home.current`, …). The app needs a way to start without
+   real location in CI: decide how (a launch argument, or granting the permission with `adb`).
+2. **Screenshots:** the flow saves screenshots per language; CI commits them back when the
+   commit message contains `[screenshots]`, as in the Android and iOS repos. Look at them: the
+   Android bidi bug and the iOS invisible clouds were both found this way.
+3. **System texts translated:** the iOS location permission text (`NSLocationWhenInUseUsageDescription`)
+   in tr and ar through `InfoPlist.strings`; check the Android app name and any system strings.
+4. **Release builds:** Android release build (R8) and iOS Release build in CI; version 1.0.0 in
+   `package.json`, `build.gradle` and the Xcode project; iOS `PrivacyInfo.xcprivacy` for the
+   APIs AsyncStorage uses.
+5. **Accessibility pass:** largest font size and TalkBack/VoiceOver labels, checked on the
+   screenshots; fix what they show.
+6. Docs: the finished README (what the app does, screenshots, how to run, the seven steps), the
+   step 07 guide with what went wrong, and a release checklist. Add the `rn` platform to the
+   "finished" list in the branch README script.
 
 ## Process rule
 After a step is merged into `main`, add the "📍 You are on Step N" section to the top of that
@@ -49,4 +48,6 @@ step branch's README, then push the branch.
 - The iOS location text in `Info.plist` is English only: translate it in step 07.
 - Views take `state` + callbacks; render any of them in a language with
   `__tests__/support/render.tsx`.
+- `src/app/main.tsx` is the real entry point; `App` receives its dependencies, so
+  `__tests__/App.test.tsx` runs the whole app with fakes.
 - Node 22; the Android SDK can be installed to `/opt/android-sdk` in cloud sessions.
