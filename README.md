@@ -5,12 +5,40 @@ public tutorial on professional React Native development with Clean Architecture
 coding agent.**
 
 <!-- step-banner:start -->
-> ### 📍 You are on `main`: the newest version
-> This branch has every step merged so far (see [PROGRESS.md](docs/PROGRESS.md)); at
-> step 07 it becomes the finished app. To **learn how it is built**, start at
-> [**Step 01 — Planning: documents before code**](https://github.com/AhmedJAbuSada/atmos-react-native/tree/step-01-planning) and follow the steps in order:
-> each step branch has its own README that explains what that step is, why it exists,
-> and what changed. All steps: [ROADMAP.md](docs/ROADMAP.md).
+## 📍 You are on Step 06 of 7 — Integration: connect the views to the real data
+
+`step-06-integration` · [← Step 05](https://github.com/AhmedJAbuSada/atmos-react-native/tree/step-05-presentation-ui) · [Step 07 →](https://github.com/AhmedJAbuSada/atmos-react-native/tree/step-07-quality-release) · [All steps](docs/ROADMAP.md)
+
+**What this step is.** The glue that makes the app work end to end: view models as Zustand vanilla stores that turn use-case results into the view states from step 05, containers that connect each store to its view, one composition root that builds the whole object graph from a data module and a platform, typed React Navigation routes, the explanation-first location permission flow, debounced city search with Undo, and journey tests that run the real app with fakes in three languages.
+
+**Why it matters.** Each layer stays small because it does one job: the use cases decide whether to download, the view models decide which state to show, the views only draw it. JavaScript cannot cancel a promise, so every load and search takes a number and late answers are ignored; tests prove it by resolving a promise after the user moved on.
+
+**What you will find in this branch**
+
+| Where | What |
+|---|---|
+| `src/presentation/viewModels/` | Home, Cities, Settings view models |
+| `src/presentation/*/…Screen.tsx` | Containers: store → view |
+| `src/app/composition.ts` | The whole graph, no native code |
+| `src/app/main.tsx` | The real entry point |
+| `src/app/navigation.tsx` | Typed routes |
+| `__tests__/App.test.tsx` | Journeys through the real app |
+
+**How to study this step**
+
+1. **Read the full guide:** [docs/steps/06-integration.md](docs/steps/06-integration.md): key ideas, diagrams, and *how the AI agent helped* (including what went wrong).
+2. **See exactly what this step changed:** [compare with step 05](https://github.com/AhmedJAbuSada/atmos-react-native/compare/step-05-presentation-ui...step-06-integration).
+3. **Run it:**
+   ```bash
+   npm test
+   npm run android
+   ```
+4. **Try the exercise:** Remove the `token !== generation` check in `homeViewModel.ts` and run the tests. Which ones fail, and what would the user see in the real app?
+
+> This README shows the project *as it was at this step*. The finished app is on
+> [`main`](https://github.com/AhmedJAbuSada/atmos-react-native).
+
+---
 <!-- step-banner:end -->
 
 ![React Native](https://img.shields.io/badge/React%20Native-0.88-61DAFB?logo=react&logoColor=black)
