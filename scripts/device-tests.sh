@@ -24,7 +24,22 @@ for language in en tr ar; do
     out="$PWD/docs/screenshots/android-$language"
     mkdir -p "$out" build
     results="build/maestro-$language"
-    if ! maestro test e2e/journey.yaml --test-output-dir "$results" --format junit --output "build/e2e-$language.xml"; then
+    run_journey() {
+        maestro test e2e/journey.yaml --test-output-dir "$results" --format junit --output "build/e2e-$language.xml"
+    }
+    # The journey uses the real API over the runner's network. One retry absorbs a slow
+    # moment there; the log says so, and two failures in a row still fail the build.
+    passed=no
+    if run_journey; then
+        passed=yes
+    else
+        echo "Retrying the $language journey once (real network)."
+        adb shell pm clear "$APP"
+        adb shell cmd locale set-app-locales "$APP" --locales "$language"
+        rm -rf "$results"
+        if run_journey; then passed=yes; fi
+    fi
+    if [ "$passed" = no ]; then
         # Say what the app was showing: the last lines of this log become the CI annotation.
         adb shell uiautomator dump /sdcard/window.xml >/dev/null 2>&1 || true
         adb pull /sdcard/window.xml build/window.xml >/dev/null 2>&1 || true

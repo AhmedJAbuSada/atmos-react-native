@@ -99,7 +99,7 @@ cd android && ./gradlew assembleRelease && cd ..
 | Found the empty privacy declaration by comparing with the iOS app | — |
 
 **What went wrong, and what we learned:**
-1. **Four red runs before green.** Each taught something:
+1. **Five red runs before green.** Each taught something:
    - **No reason given.** The first failure only said "not visible", so the agent added
      `describe-screen.py` (idea 3). **Lesson:** make failures explain themselves before
      fixing them.
@@ -114,6 +114,11 @@ cd android && ./gradlew assembleRelease && cd ..
      flow taps "Wait" if one still appears.
    - **Screenshot paths.** This Maestro version only writes screenshots inside its own output
      folder; the script copies them to `docs/screenshots/` afterwards.
+   - **A slow real API.** On one run the Turkish search was still loading after 30 seconds. The
+     app itself may take ~48 s (15 s timeout and two retries), so the test now waits 60 s, and
+     a language whose journey fails is run once more, with a line in the log. Two failures in a
+     row still fail the build. **Lesson:** a test against a real network needs a budget at
+     least as long as the app's own.
 2. **An empty privacy declaration.** The React Native template ships a privacy manifest that
    collects "nothing", but the app sends its approximate location to Open-Meteo. Comparing with
    the native iOS app found it. **Lesson:** templates are a start, not an answer.

@@ -29,10 +29,11 @@ appId: dev.ahmedabusada.atmos.rn
 - tapOn:
     id: cities.search
 - inputText: Ankara
+# The real API: the app may take up to ~48 s (15 s timeout, two retries), so wait longer.
 - extendedWaitUntil:
     visible:
       id: cities.add.323786
-    timeout: 30000
+    timeout: 60000
 - hideKeyboard
 - takeScreenshot: 2-search
 - tapOn:
