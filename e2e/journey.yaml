@@ -1,11 +1,14 @@
-# The main journey (US-01, US-04, US-05, US-08) on a real device, against the real API.
+# The main journey on a real device, against the real API: a user who has not allowed
+# location searches, adds and opens a city, then changes the unit (F-02, US-04, US-05, US-08).
+# The same journey as the Android and iOS apps. The "current location" path is covered by the
+# Jest journey tests with fakes: an emulator gives no coarse (Wi-Fi/cell) location.
 # Steps use testIDs, not texts, so the same flow runs in English, Turkish and Arabic.
 # OUT is the folder for the screenshots, set by scripts/device-tests.sh.
 appId: dev.ahmedabusada.atmos.rn
 ---
 - launchApp:
     permissions:
-      location: allow
+      location: deny
 # If the emulator still shows a system "isn't responding" dialog, wait for that app.
 - runFlow:
     when:
@@ -14,15 +17,15 @@ appId: dev.ahmedabusada.atmos.rn
     commands:
       - tapOn:
           id: android:id/aerr_wait
-# The forecast for the current location (the emulator is placed in Istanbul).
+# Home explains why it needs the location and offers city search instead.
 - extendedWaitUntil:
     visible:
-      id: home.current
+      id: message.secondaryAction
     timeout: 45000
 - takeScreenshot: ${OUT}/1-home
-# Search for a city and add it.
 - tapOn:
-    id: home.openCities
+    id: message.secondaryAction
+# Search for a city and add it.
 - tapOn:
     id: cities.search
 - inputText: Ankara

@@ -15,15 +15,9 @@ adb shell settings put global anr_show_background 0
 adb shell input keyevent KEYCODE_HOME
 sleep 20
 
-# The emulator reports a position only when it is told one. A real phone keeps updating, so
-# keep sending Istanbul (longitude first) every 2 seconds while the journeys run.
-( while true; do adb emu geo fix 28.97 41.01 >/dev/null 2>&1; sleep 2; done ) &
-GEO_PID=$!
-trap 'kill "$GEO_PID" 2>/dev/null || true' EXIT
-
 for language in en tr ar; do
     echo "::group::Journey in $language"
-    # A fresh start: no saved cities, no cached forecast, no granted permission.
+    # A fresh start: no saved cities, no cached forecast, no location permission.
     adb shell pm clear "$APP"
     # The per-app language, as the user would set it in Android 13+ settings (ADR-0005).
     adb shell cmd locale set-app-locales "$APP" --locales "$language"
