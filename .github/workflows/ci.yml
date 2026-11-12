@@ -1,8 +1,10 @@
-# Three jobs:
-# - checks: TypeScript, ESLint (architecture + casing rules) and Jest. Fast; most changes
-#   are proven here.
-# - android: the debug APK builds.
-# - ios: the app builds for the iOS Simulator (CocoaPods + xcodebuild).
+# Four jobs:
+# - checks: TypeScript, ESLint (architecture, casing, right-to-left rules) and Jest. Fast; most
+#   changes are proven here.
+# - android: the release APK, shrunk by R8, builds.
+# - device: that APK on an Android emulator: the Maestro journey in en, tr and ar, against the
+#   real API. With "[screenshots]" in the commit message, the screenshots are committed back.
+# - ios: the app builds in Release for the iOS Simulator (CocoaPods + xcodebuild).
 name: CI
 
 on:
@@ -53,9 +55,67 @@ jobs:
           java-version: "17"
       - uses: gradle/actions/setup-gradle@v5
       - run: npm ci
-      - name: Assemble debug APK
+      - name: Assemble release APK (R8)
         working-directory: android
-        run: ./gradlew assembleDebug --console=plain > ../android.log 2>&1 || { python3 ../scripts/annotate-log.py ../android.log "Android build"; exit 1; }
+        run: ./gradlew assembleRelease --console=plain > ../android.log 2>&1 || { python3 ../scripts/annotate-log.py ../android.log "Android build"; exit 1; }
+      - uses: actions/upload-artifact@v5
+        with:
+          name: release-apk
+          path: android/app/build/outputs/apk/release/app-release.apk
+          retention-days: 7
+
+  device:
+    name: Emulator journey (Maestro)
+    needs: android
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    permissions:
+      contents: write # only used to commit screenshots, see the last step
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v5
+        with:
+          name: release-apk
+          path: android/app/build/outputs/apk/release/
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Install Maestro
+        run: curl -fsSL "https://get.maestro.mobile.dev" | bash
+      # Hardware acceleration for the emulator on GitHub's Linux runners.
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Run the journey on an emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          disable-animations: true
+          script: ./scripts/device-tests.sh > device.log 2>&1 || { python3 scripts/annotate-log.py device.log "Emulator journey"; exit 1; }
+      - name: Upload screenshots and Maestro reports
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: e2e
+          path: |
+            docs/screenshots/
+            build/e2e-*.xml
+            ~/.maestro/tests/
+          retention-days: 7
+      # Pushes made with GITHUB_TOKEN do not start new runs, so this cannot loop.
+      - name: Commit the screenshots
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[screenshots]')
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/screenshots
+          git diff --cached --quiet || git commit -m "docs: update screenshots"
+          git push
 
   ios:
     name: iOS build
@@ -72,8 +132,8 @@ jobs:
       - name: Install CocoaPods dependencies
         working-directory: ios
         run: pod install > ../pods.log 2>&1 || { python3 ../scripts/annotate-log.py ../pods.log "pod install"; exit 1; }
-      - name: Build for the iOS Simulator
+      - name: Build in Release for the iOS Simulator
         run: |
-          xcodebuild build -workspace ios/Atmos.xcworkspace -scheme Atmos -configuration Debug \
+          xcodebuild build -workspace ios/Atmos.xcworkspace -scheme Atmos -configuration Release \
             -sdk iphonesimulator -destination "generic/platform=iOS Simulator" CODE_SIGNING_ALLOWED=NO \
             > ios.log 2>&1 || { python3 scripts/annotate-log.py ios.log "iOS build"; exit 1; }

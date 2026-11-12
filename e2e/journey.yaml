@@ -1,0 +1,47 @@
+# The main journey (US-01, US-04, US-05, US-08) on a real device, against the real API.
+# Steps use testIDs, not texts, so the same flow runs in English, Turkish and Arabic.
+# OUT is the folder for the screenshots, set by scripts/device-tests.sh.
+appId: dev.ahmedabusada.atmos.rn
+---
+- launchApp:
+    permissions:
+      location: allow
+# The forecast for the current location (the emulator is placed in Istanbul).
+- extendedWaitUntil:
+    visible:
+      id: home.current
+    timeout: 45000
+- takeScreenshot: ${OUT}/1-home
+# Search for a city and add it.
+- tapOn:
+    id: home.openCities
+- tapOn:
+    id: cities.search
+- inputText: Ankara
+- extendedWaitUntil:
+    visible:
+      id: cities.add.323786
+    timeout: 30000
+- hideKeyboard
+- takeScreenshot: ${OUT}/2-search
+- tapOn:
+    id: cities.add.323786
+- extendedWaitUntil:
+    visible:
+      id: cities.place.city-323786
+    timeout: 15000
+- takeScreenshot: ${OUT}/3-cities
+# Open it: Home shows Ankara.
+- tapOn:
+    id: cities.place.city-323786
+- extendedWaitUntil:
+    visible:
+      id: home.current
+    timeout: 45000
+- takeScreenshot: ${OUT}/4-city
+# Change the unit in Settings (US-08).
+- tapOn:
+    id: home.openSettings
+- tapOn:
+    id: settings.temperature.fahrenheit
+- takeScreenshot: ${OUT}/5-settings
