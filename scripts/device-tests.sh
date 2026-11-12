@@ -19,6 +19,15 @@ for language in en tr ar; do
     adb emu geo fix 28.97 41.01
     out="$PWD/docs/screenshots/android-$language"
     mkdir -p "$out" build
-    maestro test e2e/journey.yaml --env OUT="$out" --format junit --output "build/e2e-$language.xml"
+    if ! maestro test e2e/journey.yaml --env OUT="$out" --format junit --output "build/e2e-$language.xml"; then
+        # Say what the app was showing: the last lines of this log become the CI annotation.
+        adb shell uiautomator dump /sdcard/window.xml >/dev/null 2>&1 || true
+        adb pull /sdcard/window.xml build/window.xml >/dev/null 2>&1 || true
+        echo "Screen when the journey failed ($language):"
+        python3 scripts/describe-screen.py build/window.xml | head -30
+        echo "Recent app log:"
+        adb logcat -d -t 200 | grep -iE "ReactNativeJS|AndroidRuntime|FATAL" | tail -15 || true
+        exit 1
+    fi
     echo "::endgroup::"
 done
