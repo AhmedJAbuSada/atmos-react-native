@@ -19,7 +19,38 @@ coding agent.**
 ![Languages](https://img.shields.io/badge/i18n-EN%20%7C%20TR%20%7C%20AR%20(RTL)-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-> 🚧 **In progress:** steps 01–06 of 7 are done. Follow along in [PROGRESS.md](docs/PROGRESS.md).
+> ✅ **v1.0.0:** all seven steps are done. 226 tests in Node, plus the main journey on an
+> Android emulator in English, Turkish and Arabic on every push.
+
+## Screenshots
+The release build on an Android emulator, recorded by CI ([step 07](docs/steps/07-quality-release.md)).
+
+| English | Türkçe | العربية (right to left) |
+|---|---|---|
+| <img src="docs/screenshots/android-en/4-city.png" width="240" alt="Home with the forecast for Ankara, in English"> | <img src="docs/screenshots/android-tr/4-city.png" width="240" alt="Home with the forecast for Ankara, in Turkish"> | <img src="docs/screenshots/android-ar/4-city.png" width="240" alt="Home with the forecast for Ankara, in Arabic, right to left"> |
+| <img src="docs/screenshots/android-en/2-search.png" width="240" alt="City search in English"> | <img src="docs/screenshots/android-tr/2-search.png" width="240" alt="City search in Turkish"> | <img src="docs/screenshots/android-ar/2-search.png" width="240" alt="City search in Arabic"> |
+| <img src="docs/screenshots/android-en/5-settings.png" width="240" alt="Settings in English"> | <img src="docs/screenshots/android-tr/5-settings.png" width="240" alt="Settings in Turkish"> | <img src="docs/screenshots/android-ar/5-settings.png" width="240" alt="Settings in Arabic"> |
+
+## Run it
+Node 22, and the Android SDK and/or Xcode with CocoaPods, as in the
+[React Native environment setup](https://reactnative.dev/docs/set-up-your-environment).
+```bash
+npm install
+npm test                         # typecheck: npm run typecheck · lint: npm run lint
+npm run android                  # or: cd ios && pod install && cd .. && npm run ios
+```
+No API key is needed. To see Arabic or Turkish, change the app's language in the phone's
+settings.
+
+## How it is built
+```
+src/domain        pure TypeScript: entities, use cases, Result errors (no React)
+src/data          fetch + DTOs, mappers, AsyncStorage, location → domain interfaces
+src/presentation  props-only views, Zustand view models, i18next, theme
+src/app           composition root, navigation, the real entry point (main.tsx)
+```
+ESLint enforces the arrows ([ADR-0001](docs/architecture/adr/0001-clean-architecture-with-eslint-boundaries.md)).
+Full picture: [ARCHITECTURE.md](docs/architecture/ARCHITECTURE.md).
 
 ## The same app on four platforms
 
@@ -27,8 +58,8 @@ coding agent.**
 |---|---|---|
 | Android (Kotlin, Compose) | [atmos-android](https://github.com/AhmedJAbuSada/atmos-android) | ✅ v1.0.0 |
 | iOS (Swift, SwiftUI) | [atmos-ios](https://github.com/AhmedJAbuSada/atmos-ios) | ✅ v1.0.0 |
-| **React Native** (TypeScript) | you are here | 🚧 |
-| Flutter (Dart) | [atmos-flutter](https://github.com/AhmedJAbuSada/atmos-flutter) | ⬜ |
+| **React Native** (TypeScript) | you are here | ✅ v1.0.0 |
+| Flutter (Dart) | [atmos-flutter](https://github.com/AhmedJAbuSada/atmos-flutter) | 🚧 |
 
 ## The seven steps
 
@@ -40,7 +71,7 @@ coding agent.**
 | 04 | [`step-04-data-layer`](../../tree/step-04-data-layer) | fetch + DTOs, mappers, AsyncStorage, location |
 | 05 | [`step-05-presentation-ui`](../../tree/step-05-presentation-ui) | Screens as props-only views, theme, i18next, RTL |
 | 06 | [`step-06-integration`](../../tree/step-06-integration) | Zustand view models, navigation, permissions |
-| 07 | `step-07-quality-release` | Maestro end-to-end, screenshots, release |
+| 07 | [`step-07-quality-release`](../../tree/step-07-quality-release) | Maestro end-to-end, screenshots, release |
 
 Full details: [ROADMAP.md](docs/ROADMAP.md).
 
