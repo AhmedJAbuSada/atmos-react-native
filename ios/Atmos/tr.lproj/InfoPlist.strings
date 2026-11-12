@@ -1,0 +1,2 @@
+/* The system location dialog (US-01). Same text as the iOS app. */
+"NSLocationWhenInUseUsageDescription" = "Atmos, bulunduğunuz yerin hava durumunu göstermek için yaklaşık konumunuzu kullanır.";

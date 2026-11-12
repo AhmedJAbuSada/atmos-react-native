@@ -1,0 +1,2 @@
+/* The system location dialog (US-01). Same text as the iOS app. */
+"NSLocationWhenInUseUsageDescription" = "Atmos uses your approximate location to show the weather where you are.";
