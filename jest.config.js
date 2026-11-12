@@ -1,6 +1,10 @@
 module.exports = {
     preset: '@react-native/jest-preset',
     setupFiles: ['<rootDir>/jest.setup.js'],
+    // The preset's list plus React Navigation, which ships modern JavaScript modules.
+    transformIgnorePatterns: [
+        'node_modules/(?!((jest-)?react-native|@react-native(-community)?|@react-navigation)/)',
+    ],
     // Shared helpers for tests, not tests themselves.
     testPathIgnorePatterns: ['/node_modules/', '<rootDir>/__tests__/support/'],
     collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/testing/**'],
