@@ -105,7 +105,7 @@ jobs:
           path: |
             docs/screenshots/
             build/e2e-*.xml
-            ~/.maestro/tests/
+            build/maestro-*/
           retention-days: 7
       # Pushes made with GITHUB_TOKEN do not start new runs, so this cannot loop.
       - name: Commit the screenshots

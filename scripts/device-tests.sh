@@ -23,7 +23,8 @@ for language in en tr ar; do
     adb shell cmd locale set-app-locales "$APP" --locales "$language"
     out="$PWD/docs/screenshots/android-$language"
     mkdir -p "$out" build
-    if ! maestro test e2e/journey.yaml --env OUT="$out" --format junit --output "build/e2e-$language.xml"; then
+    results="build/maestro-$language"
+    if ! maestro test e2e/journey.yaml --test-output-dir "$results" --format junit --output "build/e2e-$language.xml"; then
         # Say what the app was showing: the last lines of this log become the CI annotation.
         adb shell uiautomator dump /sdcard/window.xml >/dev/null 2>&1 || true
         adb pull /sdcard/window.xml build/window.xml >/dev/null 2>&1 || true
@@ -33,5 +34,8 @@ for language in en tr ar; do
         adb logcat -d -t 200 | grep -iE "ReactNativeJS|AndroidRuntime|FATAL" | tail -15 || true
         exit 1
     fi
+    # Maestro keeps screenshots in its output folder; the README uses docs/screenshots.
+    find "$results" -name "*.png" -exec cp {} "$out/" \;
+    ls "$out"
     echo "::endgroup::"
 done

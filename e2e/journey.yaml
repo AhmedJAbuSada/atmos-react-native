@@ -3,7 +3,7 @@
 # The same journey as the Android and iOS apps. The "current location" path is covered by the
 # Jest journey tests with fakes: an emulator gives no coarse (Wi-Fi/cell) location.
 # Steps use testIDs, not texts, so the same flow runs in English, Turkish and Arabic.
-# OUT is the folder for the screenshots, set by scripts/device-tests.sh.
+# Screenshots go to Maestro's output folder; scripts/device-tests.sh copies them to docs/.
 appId: dev.ahmedabusada.atmos.rn
 ---
 - launchApp:
@@ -22,7 +22,7 @@ appId: dev.ahmedabusada.atmos.rn
     visible:
       id: message.secondaryAction
     timeout: 45000
-- takeScreenshot: ${OUT}/1-home
+- takeScreenshot: 1-home
 - tapOn:
     id: message.secondaryAction
 # Search for a city and add it.
@@ -34,14 +34,14 @@ appId: dev.ahmedabusada.atmos.rn
       id: cities.add.323786
     timeout: 30000
 - hideKeyboard
-- takeScreenshot: ${OUT}/2-search
+- takeScreenshot: 2-search
 - tapOn:
     id: cities.add.323786
 - extendedWaitUntil:
     visible:
       id: cities.place.city-323786
     timeout: 15000
-- takeScreenshot: ${OUT}/3-cities
+- takeScreenshot: 3-cities
 # Open it: Home shows Ankara.
 - tapOn:
     id: cities.place.city-323786
@@ -49,10 +49,10 @@ appId: dev.ahmedabusada.atmos.rn
     visible:
       id: home.current
     timeout: 45000
-- takeScreenshot: ${OUT}/4-city
+- takeScreenshot: 4-city
 # Change the unit in Settings (US-08).
 - tapOn:
     id: home.openSettings
 - tapOn:
     id: settings.temperature.fahrenheit
-- takeScreenshot: ${OUT}/5-settings
+- takeScreenshot: 5-settings
