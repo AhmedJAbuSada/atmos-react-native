@@ -14,5 +14,5 @@ git switch step-03-domain-layer   # any step
 | 04 | `step-04-data-layer` | fetch + DTOs, mappers, AsyncStorage cache, settings, location | [04-data-layer.md](steps/04-data-layer.md) |
 | 05 | `step-05-presentation-ui` | Theme, screens as props-only views, i18next, RTL | [05-presentation-ui.md](steps/05-presentation-ui.md) |
 | 06 | `step-06-integration` | Zustand view models, React Navigation, permissions, real data | [06-integration.md](steps/06-integration.md) |
-| 07 | `step-07-quality-release` | Maestro end-to-end, screenshots, release builds | — |
+| 07 | `step-07-quality-release` | Maestro end-to-end, screenshots, release builds | [07-quality-release.md](steps/07-quality-release.md) |
 | — | `main` | The finished app | — |

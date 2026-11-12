@@ -41,7 +41,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Atmos uses your location to show the weather where you are.</string>
+	<string>Atmos uses your approximate location to show the weather where you are.</string>
 	<key>RCTNewArchEnabled</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>

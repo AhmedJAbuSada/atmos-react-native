@@ -1,0 +1,59 @@
+# The main journey on a real device, against the real API: a user who has not allowed
+# location searches, adds and opens a city, then changes the unit (F-02, US-04, US-05, US-08).
+# The same journey as the Android and iOS apps. The "current location" path is covered by the
+# Jest journey tests with fakes: an emulator gives no coarse (Wi-Fi/cell) location.
+# Steps use testIDs, not texts, so the same flow runs in English, Turkish and Arabic.
+# Screenshots go to Maestro's output folder; scripts/device-tests.sh copies them to docs/.
+appId: dev.ahmedabusada.atmos.rn
+---
+- launchApp:
+    permissions:
+      location: deny
+# If the emulator still shows a system "isn't responding" dialog, wait for that app.
+- runFlow:
+    when:
+      visible:
+        id: android:id/aerr_wait
+    commands:
+      - tapOn:
+          id: android:id/aerr_wait
+# Home explains why it needs the location and offers city search instead.
+- extendedWaitUntil:
+    visible:
+      id: message.secondaryAction
+    timeout: 45000
+- takeScreenshot: 1-home
+- tapOn:
+    id: message.secondaryAction
+# Search for a city and add it.
+- tapOn:
+    id: cities.search
+- inputText: Ankara
+# The real API: the app may take up to ~48 s (15 s timeout, two retries), so wait longer.
+- extendedWaitUntil:
+    visible:
+      id: cities.add.323786
+    timeout: 60000
+- hideKeyboard
+- takeScreenshot: 2-search
+- tapOn:
+    id: cities.add.323786
+- extendedWaitUntil:
+    visible:
+      id: cities.place.city-323786
+    timeout: 15000
+- takeScreenshot: 3-cities
+# Open it: Home shows Ankara.
+- tapOn:
+    id: cities.place.city-323786
+- extendedWaitUntil:
+    visible:
+      id: home.current
+    timeout: 45000
+- takeScreenshot: 4-city
+# Change the unit in Settings (US-08).
+- tapOn:
+    id: home.openSettings
+- tapOn:
+    id: settings.temperature.fahrenheit
+- takeScreenshot: 5-settings
