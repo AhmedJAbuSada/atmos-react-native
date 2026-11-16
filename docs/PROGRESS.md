@@ -4,7 +4,7 @@
 
 **Current step:** 07, quality and release ✅ done: **v1.0.0, all seven steps complete**
 **Next up:** maintenance only (see below)
-**Last updated:** 2026-11-12
+**Last updated:** 2026-11-16
 
 ## Status
 
@@ -26,6 +26,14 @@ The app is feature-complete for PRD v1.0. Possible next work, each needing a use
   only ignored (step 06 note).
 - Release: follow [RELEASE_CHECKLIST.md](process/RELEASE_CHECKLIST.md); the owner creates the
   `v1.0.0` tag and GitHub Release.
+
+## Fixes after 1.0.0
+- **Arabic time order** (`fix/arabic-time-order`): times were wrapped in a left-to-right
+  isolate, so Arabic "7:29 ص" showed the AM/PM word first for a right-to-left reader. Times now
+  use a *first strong* isolate (U+2068): Arabic times read right to left, English and Turkish
+  times stay left to right. Found by comparing with the Flutter app's Arabic screenshots, which
+  were right. **Lesson:** the same rule ("isolate every value") is not right for every value;
+  a time contains a word. Four apps of the same product are four reviews of each other.
 
 ## Process rule
 After a step is merged into `main`, add the "📍 You are on Step N" section to the top of that

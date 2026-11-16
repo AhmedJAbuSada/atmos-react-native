@@ -3,6 +3,11 @@
 All notable changes to Atmos for React Native. The format follows
 [Keep a Changelog](https://keepachangelog.com/); versions follow [SemVer](https://semver.org/).
 
+## [Unreleased]
+### Fixed
+- Arabic times read in the natural order ("ص 7:29", not "7:29 ص" with the AM/PM word first).
+  Found by comparing the Arabic screenshots with the Flutter app.
+
 ## [1.0.0] — 2026-11-12
 The first release, with the same features as the Android and iOS apps (PRD v1.0).
 
