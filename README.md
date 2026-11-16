@@ -58,7 +58,7 @@ Full picture: [ARCHITECTURE.md](docs/architecture/ARCHITECTURE.md).
 | Android (Kotlin, Compose) | [atmos-android](https://github.com/AhmedJAbuSada/atmos-android) | ✅ v1.0.0 |
 | iOS (Swift, SwiftUI) | [atmos-ios](https://github.com/AhmedJAbuSada/atmos-ios) | ✅ v1.0.0 |
 | **React Native** (TypeScript) | you are here | ✅ v1.0.0 |
-| Flutter (Dart) | [atmos-flutter](https://github.com/AhmedJAbuSada/atmos-flutter) | 🚧 |
+| Flutter (Dart) | [atmos-flutter](https://github.com/AhmedJAbuSada/atmos-flutter) | ✅ v1.0.0 |
 
 ## The seven steps
 
