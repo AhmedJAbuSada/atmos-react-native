@@ -7,7 +7,13 @@ import type {
     HomeContent,
     HomeState,
 } from '../../src/presentation/home/homeState';
-import { iso, recordedForecast, renderView, SETTINGS } from '../support/render';
+import {
+    iso,
+    isoTime,
+    recordedForecast,
+    renderView,
+    SETTINGS,
+} from '../support/render';
 
 const actions = (): jest.Mocked<HomeActions> => ({
     onRefresh: jest.fn(),
@@ -108,7 +114,9 @@ describe('HomeView', () => {
         );
         expect(screen.getByText('İstanbul')).toBeOnTheScreen();
         expect(screen.getByTestId('home.sun')).toHaveTextContent(
-            `🌅 Gün doğumu ${iso('07:46')} · Gün batımı ${iso('17:49')}`,
+            `🌅 Gün doğumu ${isoTime('07:46')} · Gün batımı ${isoTime(
+                '17:49',
+            )}`,
         );
     });
 
