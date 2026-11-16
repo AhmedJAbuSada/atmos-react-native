@@ -6,7 +6,7 @@ import {
 
 const LRI = '⁦';
 const PDI = '⁩';
-const plain = (text: string) => text.replace(/[⁦⁩]/g, '');
+const plain = (text: string) => text.replace(/[⁦⁨⁩]/g, '');
 
 const en = createWeatherFormatter('en', 'Europe/Istanbul');
 const tr = createWeatherFormatter('tr', 'Europe/Istanbul');
@@ -62,6 +62,16 @@ describe('WeatherFormatter', () => {
         expect(plain(tr.hour(Date.UTC(2026, 10, 11, 4, 46)))).toBe('07:46');
         const london = createWeatherFormatter('en', 'Europe/London');
         expect(plain(london.hour(AFTERNOON))).toMatch(/^11:00\sAM$/);
+    });
+
+    test('times take their direction from the first letter, so Arabic reads "ص 7:46"', () => {
+        const FSI = '\u2068';
+        const sunrise = Date.UTC(2026, 10, 11, 4, 46);
+        // Arabic: time, then the AM/PM word. A first-strong isolate makes it right to left.
+        expect(ar.hour(sunrise)).toBe(`${FSI}7:46 ص${PDI}`);
+        // English and Turkish times have no Arabic letter: they stay left to right.
+        expect(en.hour(sunrise).startsWith(FSI)).toBe(true);
+        expect(plain(tr.hour(sunrise))).toBe('07:46');
     });
 
     test('day names in each language', () => {

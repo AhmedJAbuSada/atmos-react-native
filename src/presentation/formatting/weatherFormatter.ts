@@ -20,6 +20,18 @@ export function isolate(value: string): string {
     return LEFT_TO_RIGHT_ISOLATE + value + POP_DIRECTIONAL_ISOLATE;
 }
 
+const FIRST_STRONG_ISOLATE = '\u2068';
+
+/**
+ * Like {@link isolate}, but the direction comes from the first letter inside. For times:
+ * Arabic writes "7:29 ص" (time, then the AM/PM word), which must read right to left, so it
+ * shows as "ص 7:29"; forced left to right it showed the word first. "2:00 PM" and "14:00"
+ * stay left to right. Found by comparing with the Flutter app's Arabic screenshots.
+ */
+export function isolateByFirstLetter(value: string): string {
+    return FIRST_STRONG_ISOLATE + value + POP_DIRECTIONAL_ISOLATE;
+}
+
 /**
  * Turns domain values into text for one language and one place's time zone. Why not
  * `` `${value}°` ``? Because the language changes more than the words: Turkish writes `%69` and
@@ -76,7 +88,7 @@ export function createWeatherFormatter(
 
         /** `2:00 PM` or `14:00`, as the language prefers, **at the place**, not on the phone. */
         hour(epochMs: number): string {
-            return isolate(hour.format(epochMs));
+            return isolateByFirstLetter(hour.format(epochMs));
         },
 
         /** `Thursday`, `Perşembe`, `الخميس`. A word, so no isolate. */

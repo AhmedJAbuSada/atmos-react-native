@@ -40,3 +40,6 @@ export const SETTINGS = DEFAULT_SETTINGS;
 
 /** Formatted values sit between directional isolates; this builds the text a user sees. */
 export const iso = (value: string) => `⁦${value}⁩`;
+
+/** Times are isolated by their first letter instead (Arabic "7:29 ص" reads right to left). */
+export const isoTime = (value: string) => `⁨${value}⁩`;
